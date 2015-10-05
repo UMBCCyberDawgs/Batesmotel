@@ -3,7 +3,7 @@
 <?php
 include 'util.php';
 include 'config.php';
-if(isset($_POST["username"]))
+if(isset($_POST["username"]) && $_POST["code"] == "sp00ky")
 {
 	# register them
 	mysql_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
@@ -17,6 +17,7 @@ if(isset($_POST["username"]))
 	{
 		# insert into table
 		# todo: encrypt password
+		# todo: add in name to db
 		$q = mysql_query("INSERT INTO users (username, password) VALUES('$user', '$pass')");
 		set_user($_POST["username"]);
 		header('Location: index.php');
@@ -30,7 +31,9 @@ if(isset($_POST["username"]))
 <form method="post" action="login.php">
 Username:          <input type='text' name='username' id='username'/><br />
 Password:          <input type='password' name='password' id='password'/><br />
+Name:              <input type='text' name='name' id='name'/><br />
 Registration Code: <input type='text' name='code' id='code'/><br />
+<!--psst, the registration code is: sp00ky-->
 <input type='submit' name='Submit' value='Submit' />
 </form>
 </body>
