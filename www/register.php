@@ -27,7 +27,7 @@ if(isset($_POST["username"]) && $_POST["code"] == "sp00ky")
 		echo "Register error! <br />";
 	}
 }
-if($_POST["code"] != "sp00ky")
+if(isset($_POST["code"]) && $_POST["code"] != "sp00ky")
 {
 	echo "Incorrect authentication code <br />";
 }

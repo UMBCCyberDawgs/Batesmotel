@@ -9,3 +9,5 @@ if(!is_logged_in())
 echo "Hello world!";
 echo "<br / >" . get_user();
 ?>
+</body>
+</html>
