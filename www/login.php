@@ -10,6 +10,10 @@ if(isset($_POST["username"]))
 	mysql_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
 	mysql_select_db("$dbname") or die("cannot select db");
 	$user = $_POST["username"];
+	if((strpos($user, '#') !== FALSE) || strpos($user, ';') !== FALSE)
+	{
+		die("nuhuh");	
+	}
 	$pass = $_POST["password"];
 
 	$q = mysql_query("SELECT * FROM users WHERE username='$user' AND password='$pass'");
@@ -17,8 +21,9 @@ if(isset($_POST["username"]))
 	if($count == 1)
 	{
 		# we found a match!
-		#$row = mysql_fetch_assoc($q);
-		set_user($_POST["username"]);
+		$row = mysql_fetch_assoc($q);
+		#set_user($_POST["username"]);
+		set_user($row['username']); # prevent sql injection through session stuff
 		header('Location: index.php');
 	} else {
 		echo "Login error<br />";
