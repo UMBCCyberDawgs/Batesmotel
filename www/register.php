@@ -9,6 +9,7 @@ if(isset($_POST["username"]) && $_POST["code"] == "sp00ky")
 	mysql_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
 	mysql_select_db("$dbname") or die("cannot select db");
 	$user = mysql_real_escape_string($_POST["username"]);
+	$name = $_POST["name"];
 	$pass = $_POST["password"];
 
 	$q = mysql_query("SELECT * FROM users WHERE username='$user'");
@@ -18,7 +19,7 @@ if(isset($_POST["username"]) && $_POST["code"] == "sp00ky")
 		# insert into table
 		# todo: encrypt password
 		# todo: add in name to db
-		$q = mysql_query("INSERT INTO users (username, password) VALUES('$user', '$pass')");
+		$q = mysql_query("INSERT INTO users (username, password, name, is_admin) VALUES('$user', '$pass', '$name', 'f')");
 		set_user($_POST["username"]);
 		header('Location: index.php');
 	} else
@@ -26,9 +27,13 @@ if(isset($_POST["username"]) && $_POST["code"] == "sp00ky")
 		echo "Register error! <br />";
 	}
 }
+if($_POST["code"] != "sp00ky")
+{
+	echo "Incorrect authentication code <br />";
+}
 ?>
 <p>Due to lots of spam, we now require a registration code to sign up. Please see the front desk to get the code.</p>
-<form method="post" action="login.php">
+<form method="post" action="register.php">
 Username:          <input type='text' name='username' id='username'/><br />
 Password:          <input type='password' name='password' id='password'/><br />
 Name:              <input type='text' name='name' id='name'/><br />
