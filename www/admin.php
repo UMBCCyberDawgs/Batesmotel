@@ -80,8 +80,8 @@ if(isset($_GET["target"]))
 	}
 	else
 	{
-		#header("Location: error.php");
-		#die("no");
+		header("Location: error.php");
+		die("no");
 		echo "plsno";
 	}
 }

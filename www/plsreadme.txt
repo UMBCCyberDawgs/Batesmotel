@@ -1,6 +1,6 @@
 CONGRADULATIONS!
 You've completed the challenge, the flag is:
-alfred_hithcock_is_the_best
+alfred_hitchcock_is_the_best
 
 I have one more challenge for you however, which is to try and get Norman
 Bates' (plaintext) password.

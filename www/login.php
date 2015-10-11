@@ -56,6 +56,7 @@ if(isset($_POST["username"]))
 	$user = $_POST["username"];
 	if((strpos($user, '#') !== FALSE) || strpos($user, ';') !== FALSE)
 	{
+		header('Location: error.php');
 		die("nuhuh");	
 	}
 	//$pass = $_POST["password"];

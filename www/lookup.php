@@ -85,6 +85,7 @@ if(isset($_GET["username"]))
 	else
 	{
 		echo "No users found with that username"; # todo: redirect to error page
+		header("Location: error.php");
 	}
 }
 ?>

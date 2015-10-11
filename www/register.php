@@ -72,11 +72,13 @@ if(isset($_POST["username"]) && $_POST["code"] == "sp00ky")
 	} else
 	{
 		echo "Register error! <br />";
+		header("Location: error.php");
 	}
 }
 if(isset($_POST["code"]) && $_POST["code"] != "sp00ky")
 {
 	echo "Incorrect authentication code <br />";
+	header("Location: error.php");
 }
 ?>
 <p>Due to lots of spam, we now require a registration code to sign up. Please see the front desk to get the code.</p>
