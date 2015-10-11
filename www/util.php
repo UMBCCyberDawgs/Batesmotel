@@ -25,6 +25,7 @@ function is_logged_in()
 # opens a db connection
 function connect_db()
 {
+	include 'config.php';
 	mysql_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
 	mysql_select_db("$dbname") or die("cannot select db");
 }
