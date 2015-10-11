@@ -10,7 +10,8 @@ if(isset($_POST["username"]) && $_POST["code"] == "sp00ky")
 	mysql_select_db("$dbname") or die("cannot select db");
 	$user = mysql_real_escape_string($_POST["username"]);
 	$name = mysql_real_escape_string($_POST["name"]);
-	$pass = $_POST["password"];
+	//$pass = $_POST["password"];
+	$pass = encrypt_password($_POST["password"]);
 	$about = $_POST["about"];
 
 	$q = mysql_query("SELECT * FROM users WHERE username='$user'");

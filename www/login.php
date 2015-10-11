@@ -14,7 +14,8 @@ if(isset($_POST["username"]))
 	{
 		die("nuhuh");	
 	}
-	$pass = $_POST["password"];
+	//$pass = $_POST["password"];
+	$pass = encrypt_password($_POST["password"]);
 
 	$q = mysql_query("SELECT * FROM users WHERE username='$user' AND password='$pass'");
 	$count = mysql_num_rows($q);
