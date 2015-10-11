@@ -46,4 +46,17 @@ function is_admin($username)
 	return false;
 }
 
+# encrypts the password with xor encryption and base64
+function encrypt_password($pass)
+{
+	$key = 42;
+	$out = '';
+	# iterate
+	for($i=0; $i<strlen($pass); $i++)
+	{
+		$out .= $pass{$i} ^ $key;
+	}
+	return base64_encode($out);
+}
+
 ?>
