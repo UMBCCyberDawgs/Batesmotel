@@ -1,3 +1,4 @@
-Hey there, my name is Norman Bates!
-I'm the sole proprietor the Bates Motel, or atleast I am now.
-My hobbies include taxidermy and hanging out with my mother.
+<img src="https://upload.wikimedia.org/wikipedia/en/c/c0/Norman-bates.png" /><br />
+<p>Hey there, my name is Norman Bates!<br />
+I'm the sole proprietor the Bates Motel, or atleast I am now. <br />
+My hobbies include taxidermy and hanging out with my mother.</p>
