@@ -54,7 +54,7 @@ function encrypt_password($pass)
 	# iterate
 	for($i=0; $i<strlen($pass); $i++)
 	{
-		$out .= $pass{$i} ^ $key;
+		$out .= chr(ord($pass{$i}) ^ $key);
 	}
 	return base64_encode($out);
 }
