@@ -1,16 +1,23 @@
-FROM centos:6.6
-RUN yum update -y; yum install -y httpd
-RUN yum install -y mysql mysql-server
-RUN echo "NETWORKING=yes" > /etc/sysconfig/network
-RUN /sbin/service mysqld start
-RUN yum install -y php php-mysql php-devel php-gd php-pecl-memcache
-RUN yum install -y openssh-server openssh-clients passwd
+FROM centos:latest
+MAINTAINER Julio Valcarcel <julio.valcarcel@sofiac.us>
 
-RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key && ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key 
+RUN yum install -y epel-release
+RUN yum install -y httpd php php-mysql mariadb-server supervisor
 
-RUN mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && chmod 700 /root/.ssh
-ADD id_rsa.pub /root/.ssh/authorized_keys
+#COPY inc/www.tar.xz /var/www/html/www.tar.xz
+COPY www /var/www/html/
+COPY inc/supervisord.ini /etc/supervisord.d/docker.ini
+COPY inc/setup.sh /tmp/setup.sh
+#COPY inc/my.cnf /etc/my.cnf
 
-#ADD phpinfo.php /var/www/html
-ADD www/ /var/www/html/
-EXPOSE 22 80 443
+RUN sed -i.bak 's/^\(display_errors\ =\ \).*/\1On/' /etc/php.ini
+RUN /usr/bin/mysql_install_db; chown -R mysql:mysql /var/lib/mysql
+RUN chmod u+x /tmp/setup.sh; chmod 4755 /bin/ping;
+
+
+#RUN cd /var/www/html; tar xf www.tar.xz
+
+EXPOSE 80
+EXPOSE 3306
+
+CMD [ "/usr/bin/supervisord" ]
