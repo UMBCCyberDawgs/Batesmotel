@@ -67,12 +67,12 @@ if(isset($_GET["username"]))
 {
 	# lookup user
 	$user = $_GET["username"];
-	$q = mysql_query("SELECT * FROM users WHERE username='$user'");
+	$q = mysqli_query("SELECT * FROM users WHERE username='$user'");
 	# since there might be multiple users with the same username, just dump all of them
-	$count = mysql_num_rows($q);
+	$count = mysqli_stmt_num_rows($q);
 	if($count > 0)
 	{
-		while($row = mysql_fetch_assoc($q))
+		while($row = mysqli_fetch_assoc($q))
 		{
 			echo "Username: " . $row['username'] . "<br />Real Name: " . $row['name'] . "<br />About me: " . $row['about'];
 			if($row['is_admin'] == 't')

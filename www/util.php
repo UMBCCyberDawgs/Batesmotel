@@ -26,17 +26,17 @@ function is_logged_in()
 function connect_db()
 {
 	include 'config.php';
-	mysql_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
-	mysql_select_db("$dbname") or die("cannot select db");
+	mysqli_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
+	mysqli_select_db("$dbname") or die("cannot select db");
 }
 
 # checks if admin
 # must call connect_db first
 function is_admin($username)
 {
-	$u = mysql_real_escape_string($username);
-	$q = mysql_query("SELECT * FROM users WHERE username='$u'");
-	if($row = mysql_fetch_assoc($q))
+	$u = mysqli_real_escape_string($username);
+	$q = mysqli_query("SELECT * FROM users WHERE username='$u'");
+	if($row = mysqli_fetch_assoc($q))
 	{
 		if($row['is_admin'] == 't')
 		{

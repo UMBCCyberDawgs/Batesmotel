@@ -51,22 +51,22 @@ include 'config.php';
 if(isset($_POST["username"]) && $_POST["code"] == "sp00ky")
 {
 	# register them
-	mysql_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
-	mysql_select_db("$dbname") or die("cannot select db");
-	$user = mysql_real_escape_string($_POST["username"]);
-	$name = mysql_real_escape_string($_POST["name"]);
+	mysqli_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
+	mysqli_select_db("$dbname") or die("cannot select db");
+	$user = mysqli_real_escape_string($_POST["username"]);
+	$name = mysqli_real_escape_string($_POST["name"]);
 	//$pass = $_POST["password"];
 	$pass = encrypt_password($_POST["password"]);
 	$about = $_POST["about"];
 
-	$q = mysql_query("SELECT * FROM users WHERE username='$user'");
-	$count = mysql_num_rows($q);
+	$q = mysqli_query("SELECT * FROM users WHERE username='$user'");
+	$count = mysqli_stmt_num_rows($q);
 	if($count == 0)
 	{
 		# insert into table
 		# todo: encrypt password
 		# todo: add in name to db
-		$q = mysql_query("INSERT INTO users (username, password, name, about, is_admin) VALUES('$user', '$pass', '$name', '$about', 'f')");
+		$q = mysqli_query("INSERT INTO users (username, password, name, about, is_admin) VALUES('$user', '$pass', '$name', '$about', 'f')");
 		set_user($_POST["username"]);
 		header('Location: index.php');
 	} else

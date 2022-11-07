@@ -3,12 +3,16 @@ IMG_NAME=umbccd/batesmotel
 CONT_NAME=batesmotel
 HTTP_EXPOSE_PORT=8000
 
+if [-z "$1" ]; then
+	echo "Usage: $0 [build | run | rm | setup | enter]"
+	exit 1
+fi
+
 if [ "$1" == "build" ]; then
 	docker build -t $IMG_NAME . 
 
 elif [ "$1" == "run" ]; then
 	docker run -d -p $HTTP_EXPOSE_PORT:80 --name $CONT_NAME $IMG_NAME
-
 
 elif [ "$1" == "rm" ]; then
 	docker stop -t 1 $CONT_NAME
