@@ -13,6 +13,7 @@ COPY inc/setup.sh /tmp/setup.sh
 RUN sed -i.bak 's/^\(display_errors\ =\ \).*/\1On/' /etc/php.ini
 RUN /usr/bin/mysql_install_db; chown -R mysql:mysql /var/lib/mysql
 RUN chmod u+x /tmp/setup.sh; chmod 4755 /bin/ping;
+RUN mkdir -p /run/php-fpm
 
 
 #RUN cd /var/www/html; tar xf www.tar.xz
