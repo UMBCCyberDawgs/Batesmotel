@@ -18,7 +18,7 @@ if(!is_logged_in())
 {
 	header("Location: login.php");
 }
-connect_db();
+$mysqli = connect_db();
 ?>
 <body>
     <!-- Fixed navbar -->
@@ -40,7 +40,7 @@ connect_db();
 	    <li><a href="lookup.php">Lookup a user</a></li>
 	    <li><a href="static.php?page=test.txt">Testimonials</a></li>
 	    <?php
-            if(is_admin(get_user()))
+            if(is_admin($mysqli, get_user()))
 	    {
                   echo "<li><a href='admin.php'>Admin panel</a></li>";
             } ?>

@@ -18,7 +18,7 @@ if(!is_logged_in())
 {
 	header("Location: login.php");
 }
-connect_db();
+$mysqli = connect_db();
 ?>
 <body>
     <!-- Fixed navbar -->
@@ -40,7 +40,7 @@ connect_db();
 	    <li class="active"><a href="lookup.php">Lookup a user</a></li>
 	    <li><a href="static.php?page=test.txt">Testimonials</a></li>
 	    <?php
-            if(is_admin(get_user()))
+            if(is_admin($mysqli, get_user()))
 	    {
                   echo "<li><a href='admin.php'>Admin panel</a></li>";
             } ?>
@@ -67,7 +67,7 @@ if(isset($_GET["username"]))
 {
 	# lookup user
 	$user = $_GET["username"];
-	$q = mysqli_query("SELECT * FROM users WHERE username='$user'");
+	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user'");
 	# since there might be multiple users with the same username, just dump all of them
 	$count = mysqli_stmt_num_rows($q);
 	if($count > 0)

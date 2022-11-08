@@ -22,17 +22,26 @@ function is_logged_in()
 	return isset($_COOKIE["session"]);
 }
 
-# opens a db connection
+# opens a db connection and returns the $mysqli object
+# using the procedural style throughout this site
 function connect_db()
 {
 	include 'config.php';
-	mysqli_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
-	mysqli_select_db("$dbname") or die("cannot select db");
+	
+	$mysqli = mysqli_connect("$dbhost", "$dbuser", "$dbpass")
+  if ($mysqli->connect_errno) {
+    printf("mysqli connection error with code %d: %s\n", mysqli_connect_errno(), mysqli_connect_error());
+  }
+	if (!mysqli_select_db("$dbname")) {
+		printf("cannot select db with code %d: %s\n", mysqli_errno($mysqli), mysqli_error($mysqli));
+	}
+
+	return $mysqli
 }
 
 # checks if admin
-# must call connect_db first
-function is_admin($username)
+# must use the $mysqli object from connect_db
+function is_admin($mysqli, $username)
 {
 	$u = mysqli_real_escape_string($username);
 	$q = mysqli_query("SELECT * FROM users WHERE username='$u'");

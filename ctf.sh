@@ -3,7 +3,7 @@ IMG_NAME=umbccd/batesmotel
 CONT_NAME=batesmotel
 HTTP_EXPOSE_PORT=8000
 
-if [-z "$1" ]; then
+if [ -z "$1" ]; then
 	echo "Usage: $0 [build | run | rm | setup | enter]"
 	exit 1
 fi
@@ -21,6 +21,7 @@ elif [ "$1" == "rm" ]; then
 elif [ "$1" == "setup" ]; then
 	docker exec -d $CONT_NAME /tmp/setup.sh
 	docker exec -d $CONT_NAME rm /tmp/setup.sh
+	docker exec -d $CONT_NAME mkdir -p /run/php-fpm
 
 elif [ "$1" == "enter" ]; then 
 	docker exec -it $CONT_NAME /bin/bash

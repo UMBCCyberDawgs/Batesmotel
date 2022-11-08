@@ -51,8 +51,8 @@ include 'config.php';
 if(isset($_POST["username"]))
 {
 	# log them in bub
-	mysqli_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
-	mysqli_select_db("$dbname") or die("cannot select db");
+  # roger that bub
+	$mysqli = connect_db()
 	$user = $_POST["username"];
 	if((strpos($user, '#') !== FALSE) || strpos($user, ';') !== FALSE)
 	{
@@ -62,7 +62,7 @@ if(isset($_POST["username"]))
 	//$pass = $_POST["password"];
 	$pass = encrypt_password($_POST["password"]);
 
-	$q = mysqli_query("SELECT * FROM users WHERE username='$user' AND password='$pass'");
+	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user' AND password='$pass'");
 	$count = mysqli_stmt_num_rows($q);
 	if($count == 1)
 	{
