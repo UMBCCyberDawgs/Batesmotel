@@ -32,10 +32,7 @@ function connect_db()
   if ($db->connect_errno) {
     printf("mysqli connection error: %s\n" mysqli_connect_error());
   }
-	// if (!mysqli_select_db($db, "$dbname")) {
-	// 	printf("cannot select db: %s\n", mysqli_error($db));
-	// }
-
+	
 	return $db;
 }
 
