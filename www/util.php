@@ -32,7 +32,7 @@ function connect_db()
   if ($mysqli->connect_errno) {
     printf("mysqli connection error with code %d: %s\n", mysqli_connect_errno(), mysqli_connect_error());
   }
-	if (!mysqli_select_db("$dbname")) {
+	if (!mysqli_select_db($mysqli, "$dbname")) {
 		printf("cannot select db with code %d: %s\n", mysqli_errno($mysqli), mysqli_error($mysqli));
 	}
 
