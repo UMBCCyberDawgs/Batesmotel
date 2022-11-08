@@ -18,7 +18,6 @@ if(!is_logged_in())
 {
 	header("Location: login.php");
 }
-$mysqli = connect_db();
 ?>
 <body>
     <!-- Fixed navbar -->
@@ -37,15 +36,16 @@ $mysqli = connect_db();
           <ul class="nav navbar-nav">
             <li><a href="index.php">Home</a></li>
             <li><a href="static.php?page=about.txt">About</a></li>
-	    <li class="active"><a href="lookup.php">Lookup a user</a></li>
-	    <li><a href="static.php?page=test.txt">Testimonials</a></li>
-	    <?php
+            <li class="active"><a href="lookup.php">Lookup a user</a></li>
+            <li><a href="static.php?page=test.txt">Testimonials</a></li>
+            <?php
+            $mysqli = connect_db();
             if(is_admin($mysqli, get_user()))
-	    {
-                  echo "<li><a href='admin.php'>Admin panel</a></li>";
+	          {
+              echo "<li><a href='admin.php'>Admin panel</a></li>";
             } ?>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
             <li><a href="login.php">Login</a></li>
             <li><a href="register.php">Register</a></li>
           </ul>
