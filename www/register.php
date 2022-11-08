@@ -51,7 +51,7 @@ include 'config.php';
 if(isset($_POST["username"]) && $_POST["code"] == "sp00ky")
 {
 	# register them
-	$mysqli = connect_db()
+	$mysqli = connect_db();
 	$user = mysqli_real_escape_string($mysqli, $_POST["username"]);
 	$name = mysqli_real_escape_string($mysqli, $_POST["name"]);
 	//$pass = $_POST["password"];

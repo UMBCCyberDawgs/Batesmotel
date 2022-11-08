@@ -24,10 +24,10 @@ function is_logged_in()
 
 # opens a db connection and returns the $mysqli object
 # using the procedural style throughout this site
-function connect_db()
+function connect_db();
 {
 	include 'config.php';
-	
+
 	$mysqli = mysqli_connect("$dbhost", "$dbuser", "$dbpass")
   if ($mysqli->connect_errno) {
     printf("mysqli connection error with code %d: %s\n", mysqli_connect_errno(), mysqli_connect_error());

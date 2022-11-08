@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
 include 'util.php';
-$mysqli = connect_db()
+$mysqli = connect_db();
 
 # drop table
 #mysqli_query("DROP TABLE users");

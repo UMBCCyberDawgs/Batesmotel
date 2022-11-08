@@ -52,7 +52,7 @@ if(isset($_POST["username"]))
 {
 	# log them in bub
   # roger that bub
-	$mysqli = connect_db()
+	$mysqli = connect_db();
 	$user = $_POST["username"];
 	if((strpos($user, '#') !== FALSE) || strpos($user, ';') !== FALSE)
 	{
