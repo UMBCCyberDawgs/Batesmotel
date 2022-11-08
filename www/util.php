@@ -24,7 +24,7 @@ function is_logged_in()
 
 # opens a db connection and returns the $mysqli object
 # using the procedural style throughout this site
-function connect_db();
+function connect_db()
 {
 	include 'config.php';
 
