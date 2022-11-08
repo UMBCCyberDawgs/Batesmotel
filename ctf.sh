@@ -12,7 +12,7 @@ if [ "$1" == "build" ]; then
 	docker build -t $IMG_NAME . 
 
 elif [ "$1" == "run" ]; then
-	docker run -d -v $(pwd)/www,/var/www/html/:ro -p $HTTP_EXPOSE_PORT:80 --name $CONT_NAME $IMG_NAME
+	docker run -d -v $(pwd)/www:/var/www/html/:ro -p $HTTP_EXPOSE_PORT:80 --name $CONT_NAME $IMG_NAME
 
 elif [ "$1" == "rm" ]; then
 	docker stop -t 1 $CONT_NAME
