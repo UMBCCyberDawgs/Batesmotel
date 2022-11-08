@@ -28,7 +28,7 @@ function connect_db()
 {
 	include 'config.php';
 
-	$mysqli = mysqli_connect("$dbhost", "$dbuser", "$dbpass")
+	$mysqli = mysqli_connect("$dbhost", "$dbuser", "$dbpass");
   if ($mysqli->connect_errno) {
     printf("mysqli connection error with code %d: %s\n", mysqli_connect_errno(), mysqli_connect_error());
   }
@@ -36,7 +36,7 @@ function connect_db()
 		printf("cannot select db with code %d: %s\n", mysqli_errno($mysqli), mysqli_error($mysqli));
 	}
 
-	return $mysqli
+	return $mysqli;
 }
 
 # checks if admin
