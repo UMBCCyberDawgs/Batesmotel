@@ -28,15 +28,15 @@ function connect_db()
 {
 	include 'config.php';
 
-	$mysqli = mysqli_connect("$dbhost", "$dbuser", "$dbpass");
-  if ($mysqli->connect_errno) {
+	$db = mysqli_connect("$dbhost", "$dbuser", "$dbpass");
+  if ($db->connect_errno) {
     printf("mysqli connection error with code %d: %s\n", mysqli_connect_errno(), mysqli_connect_error());
   }
-	if (!mysqli_select_db($mysqli, "$dbname")) {
-		printf("cannot select db with code %d: %s\n", mysqli_errno($mysqli), mysqli_error($mysqli));
+	if (!mysqli_select_db($db, "$dbname")) {
+		printf("cannot select db with code %d: %s\n", mysqli_errno($db), mysqli_error($db));
 	}
 
-	return $mysqli;
+	return $db;
 }
 
 # checks if admin
