@@ -30,9 +30,9 @@ function connect_db()
 
 	$db = mysqli_connect("$dbhost", "$dbuser", "$dbpass", "$dbname");
   if ($db->connect_errno) {
-    printf("mysqli connection error: %s\n" mysqli_connect_error());
+    printf("mysqli connection error: %s\n", mysqli_connect_error());
   }
-	
+
 	return $db;
 }
 
