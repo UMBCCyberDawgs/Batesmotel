@@ -43,8 +43,8 @@ function connect_db()
 # must use the $mysqli object from connect_db
 function is_admin($mysqli, $username)
 {
-	$u = mysqli_real_escape_string($username);
-	$q = mysqli_query("SELECT * FROM users WHERE username='$u'");
+	$u = mysqli_real_escape_string($mysqli, $username);
+	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$u'");
 	if($row = mysqli_fetch_assoc($q))
 	{
 		if($row['is_admin'] == 't')
