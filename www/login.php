@@ -63,7 +63,7 @@ if(isset($_POST["username"]))
 	$pass = encrypt_password($_POST["password"]);
 
 	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user' AND password='$pass'");
-	$count = mysqli_stmt_num_rows($q);
+	$count = mysqli_num_rows($q);
 	if($count == 1)
 	{
 		# we found a match!

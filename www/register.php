@@ -59,7 +59,7 @@ if(isset($_POST["username"]) && $_POST["code"] == "sp00ky")
 	$about = $_POST["about"];
 
 	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user'");
-	$count = mysqli_stmt_num_rows($q);
+	$count = mysqli_num_rows($q);
 	if($count == 0)
 	{
 		# insert into table
