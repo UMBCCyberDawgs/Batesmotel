@@ -24,6 +24,6 @@ if($r == 9)
 	# set location
 	header("Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 }
-echo "Command (or SQL injection) failed!\n\n"
+echo "Command (or SQL injection) failed!\n\n";
 echo $errors[$r];
 ?>
