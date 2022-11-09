@@ -3,7 +3,7 @@
 wait_for_db() { mysqladmin -u root -h localhost ping; }
 
 until wait_for_db; do
-    sleep(1);
+    sleep(1)
 done
 
 mysqladmin -u root -h localhost password 5364ea964e8784e1c35ffb651acc6780
