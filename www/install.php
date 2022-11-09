@@ -21,10 +21,10 @@ function reg_user($mysqli, $username, $password, $name, $about, $is_admin)
 	mysqli_query($mysqli, "INSERT INTO users (username, password, name, about, is_admin) VALUES('$username', '$p', '$name', '$about', '$is_admin')");
 }
 
-reg_user($mysqli, 'n0rmanbates', 'ilovemom', 'Norman Bates', 'Hello! I own this motel!', 't');
-reg_user($mysqli, 'mcrane', 'helpme', 'Marion Crane', 'Just an average guest, nothing to see here', 'f');
+reg_user($mysqli, 'n0rmanbates', 'SuperDuperSecureSqordfish0!', 'Norman Bates', 'Hello! I own this motel!', 't');
+reg_user($mysqli, 'mcrane', 'helpmeplsaaaaaaaaaaa', 'Marion Crane', 'Just an average guest, nothing to see here', 'f');
 reg_user($mysqli, 'loomyboy1995', 'sex', 'Sam Loomis', 'Have you seen my girlfriend?', 'f');
-reg_user($mysqli, 'arbogast', 'trustno1', 'Arbogast', 'PI for hire', 'f');
-reg_user($mysqli, 'lovelylila', 'hihihih', 'Lila Crane', 'Do I have to put something here?', 'f');
-reg_user($mysqli, 'Norma', 'imthebest', 'Norma', 'Watching over this place since 1925', 'f');
+reg_user($mysqli, 'arbogast', 'trustno1notevenurself', 'Arbogast', 'PI for hire', 'f');
+reg_user($mysqli, 'lovelylila', 'hihihihihihihihi', 'Lila Crane', 'Do I have to put something here?', 'f');
+reg_user($mysqli, 'Norma', 'imthebestimnumber1', 'Norma', 'Watching over this place since 1925', 'f');
 ?>
