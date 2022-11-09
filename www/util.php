@@ -44,7 +44,6 @@ function is_admin($mysqli, $username)
 	$u = mysqli_real_escape_string($mysqli, $username);
 	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$u'");
 	if(!$q) {
-		printf("Username %s does not exist\n", $username);
 		return false;
 	}
 

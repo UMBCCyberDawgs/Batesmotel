@@ -81,8 +81,7 @@ if(isset($_POST["code"]) && $_POST["code"] != "sp00ky")
 }
 ?>
 <p>Due to lots of spam, we now require a registration code to sign up. Please see the front desk to get the code.</p>
-<p><b>NOTE: DO NOT INPUT ANY IMPORTANT PASSWORDS INTO THIS FORM. PASSWORDS ARE NOT STORED SECURELY PURPOSELY.</b></p>
-<p><i>This site is purely for demonstration and lab purposes, and part of the challenge is to recover a plaintext password.</i></p>
+<p><b>NOTE: DO NOT INPUT ANY IMPORTANT PASSWORDS INTO THIS FORM.</b></p>
 <form method="post" action="register.php">
 Username:          <input type='text' name='username' id='username'/><br />
 Password:          <input type='password' name='password' id='password'/><br />
