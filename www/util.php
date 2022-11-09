@@ -57,7 +57,7 @@ function is_admin($mysqli, $username)
 	return false;
 }
 
-# encrypts the password with xor encryption and base64
+# encrypts the password with [REDACTED]
 function encrypt_password($pass)
 {
 	$key = 42;
