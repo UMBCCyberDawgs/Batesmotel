@@ -29,9 +29,10 @@ function connect_db()
 	include 'config.php';
 
 	$db = mysqli_connect("$dbhost", "$dbuser", "$dbpass", "$dbname");
-  if ($db->connect_errno) {
-    printf("mysqli connection error: %s\n", mysqli_connect_error());
-  }
+	if ($db->connect_errno) {
+		printf("mysqli connection error: %s\n", mysqli_connect_error());
+		exit(1);
+	}
 
 	return $db;
 }
@@ -42,6 +43,11 @@ function is_admin($mysqli, $username)
 {
 	$u = mysqli_real_escape_string($mysqli, $username);
 	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$u'");
+	if(!$q) {
+		printf("Username %s does not exist\n", $username);
+		return false;
+	}
+
 	if($row = mysqli_fetch_assoc($q))
 	{
 		if($row['is_admin'] == 't')
