@@ -20,11 +20,10 @@ elif [ "$1" == "rm" ]; then
 
 elif [ "$1" == "setup" ]; then
 	# This directory no longer seems to be created after switching to Rocky Linux, causing php-fpm to crash
-	docker exec -d $CONT_NAME mkdir -p /run/php-fpm
-	docker exec -d $CONT_NAME /usr/sbin/php-fpm
-	# Running this in the background seems to make mysqladmin not work?
+	docker exec $CONT_NAME mkdir -p /run/php-fpm
+	docker exec $CONT_NAME /usr/sbin/php-fpm
 	docker exec $CONT_NAME /tmp/setup.sh
-	docker exec -d $CONT_NAME rm /tmp/setup.sh
+	docker exec $CONT_NAME rm /tmp/setup.sh
 
 elif [ "$1" == "enter" ]; then 
 	docker exec -it $CONT_NAME /bin/bash
