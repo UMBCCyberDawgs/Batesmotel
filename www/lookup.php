@@ -67,7 +67,7 @@ if(isset($_GET["username"]))
 {
 	# lookup user
 	$user = $_GET["username"];
-	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user'");
+	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user'", MYSQLI_STORE_RESULT);
   mysqli_stmt_store_result($q);
 	# since there might be multiple users with the same username, just dump all of them
 	$count = mysqli_stmt_num_rows($q);
