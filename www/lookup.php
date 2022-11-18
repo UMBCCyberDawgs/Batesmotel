@@ -68,6 +68,9 @@ if(isset($_GET["username"]))
 	# lookup user
 	$user = $_GET["username"];
 	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user'");
+  if(!$q) {
+    header("Location: error.php");
+  }
 	# since there might be multiple users with the same username, just dump all of them
 	$count = mysqli_num_rows($q);
 	if($count > 0)

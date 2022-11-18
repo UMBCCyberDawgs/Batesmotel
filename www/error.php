@@ -24,6 +24,6 @@ $r = rand(0, count($errors)-1);
 	# set location
 	#header("Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 #}
-echo "Command (or SQL injection) failed!\n\n";
+echo "Command (or SQL injection) failed!<br /><br />";
 echo $errors[$r];
 ?>
