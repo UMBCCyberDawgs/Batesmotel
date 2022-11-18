@@ -14,15 +14,16 @@ $errors = array("git gud scrub",
 	"I expected better from you.",
 	"My dog could hack better",
 	"u srs",
-	"I believe in you. You can do this. You have the power",
+	"I believe in you. You can do this. You have the power"
+	);
 
 # pick a random error
 $r = rand(0, count($errors)-1);
-if($r == 9)
-{
+#if($r == 9)
+#{
 	# set location
-	header("Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-}
+	#header("Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+#}
 echo "Command (or SQL injection) failed!\n\n";
 echo $errors[$r];
 ?>
