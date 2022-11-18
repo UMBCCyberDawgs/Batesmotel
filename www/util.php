@@ -22,21 +22,32 @@ function is_logged_in()
 	return isset($_COOKIE["session"]);
 }
 
-# opens a db connection
+# opens a db connection and returns the $mysqli object
+# using the procedural style throughout this site
 function connect_db()
 {
 	include 'config.php';
-	mysql_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
-	mysql_select_db("$dbname") or die("cannot select db");
+
+	$db = mysqli_connect("$dbhost", "$dbuser", "$dbpass", "$dbname");
+	if ($db->connect_errno) {
+		printf("mysqli connection error: %s\n", mysqli_connect_error());
+		exit(1);
+	}
+
+	return $db;
 }
 
 # checks if admin
-# must call connect_db first
-function is_admin($username)
+# must use the $mysqli object from connect_db
+function is_admin($mysqli, $username)
 {
-	$u = mysql_real_escape_string($username);
-	$q = mysql_query("SELECT * FROM users WHERE username='$u'");
-	if($row = mysql_fetch_assoc($q))
+	$u = mysqli_real_escape_string($mysqli, $username);
+	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$u'");
+	if(!$q) {
+		return false;
+	}
+
+	if($row = mysqli_fetch_assoc($q))
 	{
 		if($row['is_admin'] == 't')
 		{
@@ -46,7 +57,7 @@ function is_admin($username)
 	return false;
 }
 
-# encrypts the password with xor encryption and base64
+# encrypts the password with [REDACTED]
 function encrypt_password($pass)
 {
 	$key = 42;

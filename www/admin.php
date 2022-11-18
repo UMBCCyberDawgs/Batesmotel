@@ -15,8 +15,8 @@
 <?php
 include 'config.php';
 include 'util.php';
-connect_db();
-if(!is_logged_in() || !is_admin(get_user()))
+$mysqli = connect_db();
+if(!is_logged_in() || !is_admin($mysqli, get_user()))
 {
 	header("Location: error.php");
 	die("no");
@@ -39,15 +39,17 @@ if(!is_logged_in() || !is_admin(get_user()))
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Home</a></li>
             <li><a href="static.php?page=about.txt">About</a></li>
-	    <li><a href="lookup.php">Lookup a user</a></li>
-	    <li><a href="static.php?page=test.txt">Testimonials</a></li>
-	    <?php
-            if(is_admin(get_user()))
-	    {
+            <li><a href="lookup.php">Lookup a user</a></li>
+            <li><a href="static.php?page=test.txt">Testimonials</a></li>
+            <?php
+            $mysqli = connect_db();
+            if(is_admin($mysqli, get_user()))
+	          {
                   echo "<li><a href='admin.php'>Admin panel</a></li>";
-            } ?>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
+            } 
+            ?>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
             <li><a href="login.php">Login</a></li>
             <li><a href="register.php">Register</a></li>
           </ul>

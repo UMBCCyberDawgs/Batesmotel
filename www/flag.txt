@@ -7,4 +7,6 @@ Bates' (plaintext) password.
 
 Do you think you can do that?
 
-Hint: how can you get a shell?
+Hint: Some files don't seem to render correctly here... maybe there is another way to see their contents on this page?
+
+Challenge: how can you get a shell here?
