@@ -51,22 +51,21 @@ include 'config.php';
 if(isset($_POST["username"]) && $_POST["code"] == "sp00ky")
 {
 	# register them
-	mysql_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
-	mysql_select_db("$dbname") or die("cannot select db");
-	$user = mysql_real_escape_string($_POST["username"]);
-	$name = mysql_real_escape_string($_POST["name"]);
+	$mysqli = connect_db();
+	$user = mysqli_real_escape_string($mysqli, $_POST["username"]);
+	$name = mysqli_real_escape_string($mysqli, $_POST["name"]);
 	//$pass = $_POST["password"];
-	$pass = encrypt_password($_POST["password"]);
+	$pass = encrypt_password($mysqli, $_POST["password"]);
 	$about = $_POST["about"];
 
-	$q = mysql_query("SELECT * FROM users WHERE username='$user'");
-	$count = mysql_num_rows($q);
+	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user'");
+	$count = mysqli_num_rows($q);
 	if($count == 0)
 	{
 		# insert into table
 		# todo: encrypt password
 		# todo: add in name to db
-		$q = mysql_query("INSERT INTO users (username, password, name, about, is_admin) VALUES('$user', '$pass', '$name', '$about', 'f')");
+		$q = mysqli_query($mysqli, "INSERT INTO users (username, password, name, about, is_admin) VALUES('$user', '$pass', '$name', '$about', 'f')");
 		set_user($_POST["username"]);
 		header('Location: index.php');
 	} else
@@ -82,6 +81,7 @@ if(isset($_POST["code"]) && $_POST["code"] != "sp00ky")
 }
 ?>
 <p>Due to lots of spam, we now require a registration code to sign up. Please see the front desk to get the code.</p>
+<p><b>NOTE: DO NOT INPUT ANY IMPORTANT PASSWORDS INTO THIS FORM.</b></p>
 <form method="post" action="register.php">
 Username:          <input type='text' name='username' id='username'/><br />
 Password:          <input type='password' name='password' id='password'/><br />

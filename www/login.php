@@ -51,8 +51,8 @@ include 'config.php';
 if(isset($_POST["username"]))
 {
 	# log them in bub
-	mysql_connect("$dbhost", "$dbuser", "$dbpass") or die("cannot connect");
-	mysql_select_db("$dbname") or die("cannot select db");
+  # roger that bub
+	$mysqli = connect_db();
 	$user = $_POST["username"];
 	if((strpos($user, '#') !== FALSE) || strpos($user, ';') !== FALSE)
 	{
@@ -62,12 +62,12 @@ if(isset($_POST["username"]))
 	//$pass = $_POST["password"];
 	$pass = encrypt_password($_POST["password"]);
 
-	$q = mysql_query("SELECT * FROM users WHERE username='$user' AND password='$pass'");
-	$count = mysql_num_rows($q);
+	$q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user' AND password='$pass'");
+	$count = mysqli_num_rows($q);
 	if($count == 1)
 	{
 		# we found a match!
-		$row = mysql_fetch_assoc($q);
+		$row = mysqli_fetch_assoc($q);
 		#set_user($_POST["username"]);
 		set_user($row['username']); # prevent sql injection through session stuff
 		header('Location: index.php');

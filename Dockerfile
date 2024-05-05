@@ -1,11 +1,15 @@
-FROM centos:latest
+FROM rockylinux:8.6.20227707
 MAINTAINER Julio Valcarcel <julio.valcarcel@sofiac.us>
 
 RUN yum install -y epel-release
-RUN yum install -y httpd php php-mysql mariadb-server supervisor
+RUN yum install -y httpd php php-mysqlnd mariadb-server supervisor
 
 #COPY inc/www.tar.xz /var/www/html/www.tar.xz
-COPY www /var/www/html/
+
+# Using a volume instead
+# COPY www /var/www/html/
+
+# If we want to update these files, we will need to rebuild the container
 COPY inc/supervisord.ini /etc/supervisord.d/docker.ini
 COPY inc/setup.sh /tmp/setup.sh
 #COPY inc/my.cnf /etc/my.cnf
