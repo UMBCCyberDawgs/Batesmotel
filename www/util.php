@@ -60,14 +60,14 @@ function is_admin($mysqli, $username)
 # encrypts the password with [REDACTED]
 function encrypt_password($pass)
 {
-	$key = 42;
-	$out = '';
-	# iterate
-	for($i=0; $i<strlen($pass); $i++)
-	{
-		$out .= chr(ord($pass{$i}) ^ $key);
-	}
-	return base64_encode($out);
+    $key = 42;
+    $out = '';
+    // iterate
+    for ($i = 0; $i < strlen($pass); $i++)
+    {
+        $out .= chr(ord($pass[$i]) ^ $key);
+    }
+    return base64_encode($out);
 }
 
 ?>

@@ -8,18 +8,19 @@ if [ -z "$1" ]; then
 	exit 1
 fi
 
+# Builds the Bates Motel docker image
 if [ "$1" == "build" ]; then
 	docker build -t $IMG_NAME . 
 
+# Runs containters in background (-d), Mounts a Volume (-v), Hosts website on http://127.0.0.1:8000 (-p), Renames container/image
 elif [ "$1" == "run" ]; then
-	docker run -d -v $(pwd)/www:/var/www/html/ -p $HTTP_EXPOSE_PORT:80 --name $CONT_NAME $IMG_NAME
+	docker run -d -v $(pwd)/www:/var/www/html/ -p 127.0.0.1:$HTTP_EXPOSE_PORT:80 --name $CONT_NAME $IMG_NAME
 
 elif [ "$1" == "rm" ]; then
-	docker stop -t 1 $CONT_NAME
-	docker rm $CONT_NAME
+	docker stop $CONT_NAME
+	docker rm -f $CONT_NAME
 
 elif [ "$1" == "setup" ]; then
-	# This directory no longer seems to be created after switching to Rocky Linux, causing php-fpm to crash
 	docker exec -d $CONT_NAME mkdir -p /run/php-fpm
 	docker exec -d $CONT_NAME /usr/sbin/php-fpm
 	docker exec -d $CONT_NAME /tmp/setup.sh
