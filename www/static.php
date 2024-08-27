@@ -1,4 +1,4 @@
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,8 @@
 include 'util.php';
 if(!is_logged_in())
 {
-	header("Location: login.php");
+  echo "<script>alert('Please Login to View this Page')</script>";
+  echo "<script>window.location.replace('login.php')</script>";
 }
 $mysqli = connect_db();
 ?>

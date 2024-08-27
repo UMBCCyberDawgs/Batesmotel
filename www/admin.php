@@ -1,4 +1,4 @@
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,8 +18,8 @@ include 'util.php';
 $mysqli = connect_db();
 if(!is_logged_in() || !is_admin($mysqli, get_user()))
 {
-	header("Location: error.php");
-	die("no");
+  echo "<script>alert('ADMIN ACCESS ONLY')</script>";
+  echo "<script>window.location.replace('login.php')</script>";
 }
 ?>
 <body>

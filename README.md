@@ -38,7 +38,7 @@
      ```
 
 7. **Access Bates Motel**
-   - Open your web browser and go to [http://127.0.0.1:8000](http://127.0.0.1:8000) to access Bates Motel.
+   - Open your web browser and go to [http://127.0.0.1:8000/login.php](http://127.0.0.1:8000/login.php) to access Bates Motel and begin the Challenge.
 
 ### Additional Commands
 

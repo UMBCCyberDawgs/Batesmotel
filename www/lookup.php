@@ -1,5 +1,5 @@
-<html lang="en">
-  <head>
+<html>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,8 @@
 include 'util.php';
 if(!is_logged_in())
 {
-	header("Location: login.php");
+  echo "<script>alert('Please Login to View this Page')</script>";
+  echo "<script>window.location.replace('login.php')</script>";
 }
 ?>
 <body>
@@ -71,7 +72,7 @@ if(isset($_GET["username"]))
   if(!$q) {
     header("Location: error.php");
   }
-	# since there might be multiple users with the same username, just dump all of them
+  
 	$count = mysqli_num_rows($q);
 	if($count > 0)
 	{

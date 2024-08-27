@@ -1,4 +1,4 @@
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,18 +41,18 @@
     </nav>
 
     <div class="login-container">
-      <div class="login-form">
+      <div class="form">
         <?php
         include 'util.php';
-        include 'config.php';
+        require_once('config.php');
         if(isset($_POST["username"]))
         {
-            $mysqli = connect_db();
+            $mysqli = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
             $user = $_POST["username"];
             if((strpos($user, '#') !== FALSE) || strpos($user, ';') !== FALSE)
             {
-                header('Location: error.php');
-                die("nuhuh");    
+              echo "<script>alert('Illegal Character Used')</script>";
+              echo "<script>window.location.replace('login.php')</script>";
             }
             $pass = encrypt_password($_POST["password"]);
 
@@ -60,11 +60,12 @@
             $count = mysqli_num_rows($q);
             if($count == 1)
             {
-                $row = mysqli_fetch_assoc($q);
-                set_user($row['username']);
-                header('Location: index.php');
+              $row = mysqli_fetch_assoc($q);
+              set_user($row['username']);
+              header('Location: index.php');
             } else {
-                header('Location: error.php');
+              echo "<script>alert('Username or Password Incorrect')</script>";
+              echo "<script>window.location.replace('login.php')</script>";
             }
         }
         ?>

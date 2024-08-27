@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,57 +40,56 @@
       </div>
     </nav>
 
+    <div class="login-container">
+      <div  lang="en"class="registration-info">
+              <p><b>Due to lots of spam, we now require a registration code to sign up and view our website. Please see the Bates Motel front desk to get the code.</b></p>
+              <!--So I don't forget, the registration code is: sp00ky-->
+            </div>
+    </div>
+    
     <div class="container">
-        <div class="login-container">
-            <div class="login-form">
-                <?php
-                include 'util.php';
-                include 'config.php';
+        <div class="form">
+            <?php
+            include 'util.php';
 
-                if (isset($_POST["username"]) && $_POST["code"] == "sp00ky") {
-                    // Register them
-                    $mysqli = connect_db();
-                    $user = mysqli_real_escape_string($mysqli, $_POST["username"]);
-                    $name = mysqli_real_escape_string($mysqli, $_POST["name"]);
-                    $pass = encrypt_password($_POST["password"]);
-                    $about = mysqli_real_escape_string($mysqli, $_POST["about"]);
+            if (isset($_POST["username"]) && $_POST["code"] == "sp00ky") {
+                // Register them
+                $mysqli = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+                $user = mysqli_real_escape_string($mysqli, $_POST["username"]);
+                $name = mysqli_real_escape_string($mysqli, $_POST["name"]);
+                $pass = encrypt_password($_POST["password"]);
+                $about = mysqli_real_escape_string($mysqli, $_POST["about"]);
 
-                    $q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user'");
-                    $count = mysqli_num_rows($q);
+                $q = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$user'");
+                $count = mysqli_num_rows($q);
 
-                    if ($count == 0) {
-                        // Insert into table
-                        $q = mysqli_query($mysqli, "INSERT INTO users (username, password, name, about, is_admin) VALUES('$user', '$pass', '$name', '$about', 'f')");
-                        set_user($_POST["username"]);
-                        header('Location: index.php');
-                    } else {
-                        echo "Register error! <br />";
-                        header("Location: error.php");
-                    }
+                if ($count == 0) {
+                    // Insert into table
+                    $q = mysqli_query($mysqli, "INSERT INTO users (username, password, name, about, is_admin) VALUES('$user', '$pass', '$name', '$about', 0)");
+                    set_user($_POST["username"]);
+                    echo "<script>alert('Account Created Successfully.')</script>";
+                } else {
+                  echo "<script>alert('Registration Error')</script>";
+                }
                 }
 
                 if (isset($_POST["code"]) && $_POST["code"] != "sp00ky") {
-                    echo "Incorrect authentication code <br />";
-                    header("Location: error.php");
+                    echo "<script>alert('Incorrect authentication code')</script>";
                 }
-                ?>
-                <div class="registration-info">
-                    <p><b>Due to lots of spam, we now require a registration code to sign up. Please see the Bates Motel front desk to get the code.</b></p>
-                </div>
-                <form method="post" action="register.php">
-                    <label for="username">Username:</label>
-                    <input type='text' name='username' id='username' required/><br />
-                    <label for="password">Password:</label>
-                    <input type='password' name='password' id='password' required/><br />
-                    <label for="name">Name:</label>
-                    <input type='text' name='name' id='name' required/><br />
-                    <label for="code">Registration Code:</label> <!--So I don't forget, the registration code is: sp00ky-->
-                    <input type='text' name='code' id='code' required/><br />
-                    <label for="about">Tell us about you:</label>
-                    <input type='text' name='about' id='about' required/><br />
-                    <input type='submit' name='Submit' value='Submit' />
-                </form>
-            </div>
+            ?>
+            <form method="post" action="register.php">
+                <label for="username">Username:</label>
+                <input type='text' name='username' id='username' required/><br />
+                <label for="password">Password:</label>
+                <input type='password' name='password' id='password' required/><br />
+                <label for="name">Name:</label>
+                <input type='text' name='name' id='name' required/><br />
+                <label for="code">Registration Code:</label> <!--So I don't forget, the registration code is: sp00ky-->
+                <input type='text' name='code' id='code' required/><br />
+                <label for="about">Tell us about you:</label>
+                <input type='text' name='about' id='about' required/><br />
+                <input type='submit' name='Submit' value='Submit' />
+            </form>
         </div>
     </div>
 </body>
