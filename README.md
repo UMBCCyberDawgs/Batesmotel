@@ -2,6 +2,10 @@
 
 **Bates Motel** is a beginner-level web Capture The Flag (CTF) challenge provided by the CyberDawgs, distributed as a Docker container for easy setup.
 
+### Challenge Objective
+
+The objective of Bates Motel is to discover and exploit vulnerabilities on the website. Note that you should not refer to the source files provided in the GitHub repository; the challenge is to find and exploit vulnerabilities purely through interaction with the website.
+
 ### Installation Steps
 
 1. **Install Docker Engine**
@@ -55,7 +59,3 @@ For convenience, the `ctf.sh` script includes two useful additional commands:
     ```bash
     sudo ./ctf.sh enter
     ```
-
-### Challenge Objective
-
-The objective of Bates Motel is to discover and exploit vulnerabilities on the website. Note that you should not refer to the source files provided in the GitHub repository; the challenge is to find and exploit vulnerabilities purely through interaction with the website.
