@@ -1,4 +1,4 @@
-## Bates Motel Web CTF Read-Me
+## Bates Motel Web CTF
 
 **Bates Motel** is a beginner-level web Capture The Flag (CTF) challenge provided by the CyberDawgs, distributed as a Docker container for easy setup.
 
